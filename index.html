@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feed Gaya Twitter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex items-center">
+    <img src="https://i.pravatar.cc/50" alt="Avatar" class="rounded-full w-10 h-10 mr-3">
+    <div>
+      <h1 class="font-bold text-lg">Muhamad Firdaus</h1>
+      <p class="text-gray-500 text-sm">@hellodaus</p>
+    </div>
+  </header>
+
+  <!-- Composer -->
+  <section class="max-w-md mx-auto mt-4 px-2">
+    <div class="bg-white rounded-xl shadow p-4">
+      <textarea id="tweetInput" rows="3" placeholder="Apa yang berlaku?" class="w-full border rounded-xl p-2 focus:outline-none"></textarea>
+      <div class="flex justify-end mt-2">
+        <button id="tweetBtn" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-full">Tweet</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feed -->
+  <main id="feed" class="max-w-md mx-auto mt-4 space-y-4 px-2">
+    <!-- Post dari CSV akan load di sini -->
+  </main>
+
+  <script>
+    const feed = document.getElementById('feed');
+    const tweetBtn = document.getElementById('tweetBtn');
+    const tweetInput = document.getElementById('tweetInput');
+
+    // Fungsi untuk render tweet
+    function renderTweet(text, dateTime = null) {
+      const now = dateTime || new Date();
+      const date = now.toLocaleDateString('ms-MY', { day: '2-digit', month: 'long', year: 'numeric' });
+      const time = now.toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
+
+      const post = document.createElement('article');
+      post.className = 'bg-white rounded-xl shadow p-4';
+      post.innerHTML = `
+        <div class="flex items-start">
+          <img src="https://i.pravatar.cc/50" class="w-10 h-10 rounded-full mr-3">
+          <div>
+            <h2 class="font-semibold">Muhamad Firdaus</h2>
+            <p class="text-sm text-gray-500 mb-2">${date} · ${time}</p>
+            <p class="text-gray-800">${text}</p>
+          </div>
+        </div>
+      `;
+      feed.prepend(post);
+    }
+
+    // Load CSV dan render tweet
+    fetch('data.csv')
+      .then(response => response.text())
+      .then(csv => {
+        Papa.parse(csv, {
+          header: true,
+          delimiter: '|',
+          complete: function(results) {
+            results.data.forEach(row => {
+              if (row.twt) {
+                renderTweet(row.twt, new Date()); // boleh tukar tarikh ikut CSV kalau ada
+              }
+            });
+          }
+        });
+      });
+
+    // Tambah tweet manual
+    tweetBtn.addEventListener('click', () => {
+      const text = tweetInput.value.trim();
+      if (!text) {
+        alert('Tulis sesuatu dahulu!');
+        return;
+      }
+      renderTweet(text);
+      tweetInput.value = '';
+    });
+  </script>
+</body>
+</html>

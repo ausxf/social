@@ -1,95 +1,76 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feed Gaya Twitter</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Daus</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .highlight {
-      background-color: #fef08a; /* kuning */
-      transition: background-color 1.5s ease;
-    }
+    body { font-family: 'Inter', sans-serif; }
   </style>
 </head>
-<body class="bg-gray-100 font-sans">
-  <!-- Header -->
-  <header class="bg-white text-center shadow p-4 flex flex-col items-center justify-center">
-  <div>
-    <h1 class="text-center font-bold text-lg">Daus Soxial Media</h1>
-    <p class="text-center text-gray-500 text-sm">@hellodaus</p>
-  </div>
-</header>
+<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 text-gray-800">
+  <div class="max-w-3xl mx-auto p-4 md:p-8">
+    <header class="text-center mb-10">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-700">Muhamad Firdaus</h1>
+      <p class="text-gray-700 mt-2 text-lg font-medium">Web Developer | IT Support Specialist</p>
+      <p class="text-sm text-gray-500 mt-1">hellodaus.xyz • daus@hellodaus.xyz</p>
+    </header>
 
+    <section class="bg-white rounded-2xl shadow p-6 mb-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+      <h2 class="text-2xl font-semibold mb-3 text-blue-700 border-b border-blue-200 pb-2">Ringkasan</h2>
+      <p class="leading-relaxed text-gray-700 text-[15px]">
+        Seorang Web Developer berpengalaman lebih 9 tahun dalam bidang IT Support. Mempunyai kemahiran membina aplikasi web menggunakan HTML, CSS, JavaScript, dan Node.js. Hasil kerja menekankan ketepatan, rekaan moden, serta responsif pada semua peranti.
+      </p>
+    </section>
 
-  <!-- Feed -->
-  <main id="feed" class="max-w-md mx-auto mt-4 space-y-4 px-2">
-    <!-- Post dari CSV akan load di sini -->
-  </main>
+    <section class="bg-white rounded-2xl shadow p-6 mb-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+      <h2 class="text-2xl font-semibold mb-3 text-blue-700 border-b border-blue-200 pb-2">Kemahiran</h2>
+      <div class="flex flex-wrap gap-3">
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow">HTML</span>
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow">CSS / TailwindCSS</span>
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow">JavaScript</span>
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow">Node.js</span>
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow">Express.js</span>
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow">PostgreSQL</span>
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow">Docker</span>
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow">Linux Server</span>
+      </div>
+    </section>
 
-  <script>
-    const feed = document.getElementById('feed');
-    const tweetBtn = document.getElementById('tweetBtn');
-    const tweetInput = document.getElementById('tweetInput');
-
-    // Fungsi untuk render tweet dengan highlight
-    function renderTweet(text, date = null, time = null) {
-      const now = new Date();
-      const postDate = date || now.toLocaleDateString('ms-MY', { day: '2-digit', month: 'long', year: 'numeric' });
-      const postTime = time || now.toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
-
-      const post = document.createElement('article');
-      post.className = 'bg-white rounded-xl shadow p-4 highlight';
-      post.innerHTML = `
-        <div class="flex items-start">
-          <img src="profile.jpg" class="w-10 h-10 rounded-full mr-3">
-          <div>
-            <h2 class="font-semibold">Muhamad Firdaus</h2>
-            <p class="text-sm text-gray-500 mb-2">${postDate} · ${postTime}</p>
-            <p class="text-gray-800">${text}</p>
-          </div>
+    <section class="bg-white rounded-2xl shadow p-6 mb-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+      <h2 class="text-2xl font-semibold mb-3 text-blue-700 border-b border-blue-200 pb-2">Pengalaman</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-semibold text-lg text-gray-900">IT Support & Web Developer</h3>
+          <p class="text-sm text-gray-600">2015 – Kini</p>
+          <p class="mt-2 text-gray-700 leading-relaxed text-[15px]">
+            Mengurus infrastruktur IT serta membangunkan laman web dalaman syarikat menggunakan HTML, CSS, JavaScript, dan Node.js. Menyediakan penyelesaian teknikal dan pengurusan server Linux.
+          </p>
         </div>
-      `;
 
-      feed.prepend(post);
+        <div>
+          <h3 class="font-semibold text-lg text-gray-900">Freelance Web Developer</h3>
+          <p class="text-sm text-gray-600">2023 – Kini</p>
+          <p class="mt-2 text-gray-700 leading-relaxed text-[15px]">
+            Membangun laman web korporat dan landing page untuk pelanggan melalui Fiverr dan hellodaus.xyz. Menekankan rekaan minimalis, kelajuan tinggi, dan pengalaman pengguna yang optimum.
+          </p>
+        </div>
+      </div>
+    </section>
 
-      // Animasi highlight (hilang selepas 1.5s)
-      setTimeout(() => {
-        post.classList.remove('highlight');
-      }, 1500);
+    <section class="bg-white rounded-2xl shadow p-6 mb-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+      <h2 class="text-2xl font-semibold mb-3 text-blue-700 border-b border-blue-200 pb-2">Pendidikan</h2>
+      <p class="text-gray-700 leading-relaxed text-[15px]">
+        Diploma Teknologi Maklumat — Politeknik Malaysia<br>
+        Tamat: 2012
+      </p>
+    </section>
 
-      // Auto-scroll ke atas
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Load CSV dan render tweet
-    fetch('data.csv')
-      .then(response => response.text())
-      .then(csv => {
-        Papa.parse(csv, {
-          header: true,
-          delimiter: '|',
-          complete: function(results) {
-            results.data.forEach(row => {
-              if (row.twt) {
-                renderTweet(row.twt, row.date, row.masa);
-              }
-            });
-          }
-        });
-      });
-
-    // Tambah tweet manual
-    tweetBtn.addEventListener('click', () => {
-      const text = tweetInput.value.trim();
-      if (!text) {
-        alert('Tulis sesuatu dahulu!');
-        return;
-      }
-      renderTweet(text);
-      tweetInput.value = '';
-    });
-  </script>
+    <footer class="text-center text-gray-500 text-sm mt-10">
+      © 2025 Muhamad Firdaus — Dibina dengan <span class="text-blue-700 font-semibold">TailwindCSS</span>
+    </footer>
+  </div>
 </body>
 </html>
